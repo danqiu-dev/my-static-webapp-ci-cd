@@ -1,10 +1,4 @@
-# Static Web App CI/CD Project
-
-## Project Overview
-
-This project is inspired by a real work case: deploying a static web app (a
-plain HTML file) to Azure, and designing a CI/CD pipeline that automatically
-pushes updates to Azure whenever changes are merged into the `main` branch.
+# Static Web App CI/CD Project/Lab/Practice
 
 ## Background
 
@@ -12,7 +6,7 @@ At work, a client's dashboard was hosted on Azure Static Web Apps, with its
 source code stored in a GitHub repository. When an update was merged into
 `main`, it did not appear on the live site. 
 
-## Project Goal
+## Goal
 
 To understand and practice the correct setup, this project recreates the same
 scenario from scratch:
@@ -26,10 +20,48 @@ scenario from scratch:
    update merged into `main` is automatically built and pushed live to Azure,
    with no manual deployment step required.
 
-## What This Demonstrates
+## Steps
 
-- How to connect a GitHub repository to an Azure Static Web App.
-- How a GitHub Actions workflow (YAML) file defines an automatic build and
-  deploy process.
-- The difference between a manually deployed site and one with a proper
-  CI/CD pipeline — where merging to `main` is the deploy.
+### Step 1 — Create the GitHub Repository and Static Web App Code
+
+1. Go to github.com and create a new repository
+2. Check "Add a README file" and create the repository.
+3. Add a new file named `index.html` in the repository root with simple
+   HTML content.
+4. Commit the file directly to the `main` branch.
+
+### Step 2 — Create the Azure Static Web App and Connect to GitHub
+
+1. Go to portal.azure.com and search for "Static Web Apps".
+2. Click Create, then fill in the basics: subscription, resource group,
+   name, plan type (Free), and region.
+3. Under Deployment details, select GitHub as the source.
+4. Sign in to GitHub and authorize Azure when prompted.
+5. Select the Organization, Repository, and Branch (`main`).
+6. Under Build Details, set Build Presets to Custom, App location to `/`,
+   and leave Output location blank (plain HTML, no build step).
+7. Click Review + Create, then Create.
+
+Signing in with GitHub during this step causes Azure to automatically:
+- Generate a deployment token for the Static Web App.
+- Add that token as a secret named `AZURE_STATIC_WEB_APPS_API_TOKEN` in the
+  GitHub repository (visible under repo Settings > Secrets and variables >
+  Actions).
+- Create a GitHub Actions workflow YAML file in `.github/workflows/`.
+- Commit that workflow file to the repo, which triggers the first deploy.
+
+### Step 3 — Confirm the Site Is Live
+
+1. In the GitHub repository, open the Actions tab and confirm the workflow
+   run completes successfully (green checkmark).
+2. In the Azure Portal, open the Static Web App resource, go to Overview,
+   and click the URL shown there.
+3. Confirm the page loads and displays the expected content.
+
+   <img width="1917" height="916" alt="Static-web-app-on-azure" src="https://github.com/user-attachments/assets/5e7e55cc-ec4a-4aef-9195-24ea85910b84" />
+
+   <img width="620" height="247" alt="Web-url" src="https://github.com/user-attachments/assets/0addbe51-0367-4cc0-add0-fca38592c302" />
+
+
+
+
