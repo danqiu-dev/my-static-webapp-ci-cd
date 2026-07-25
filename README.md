@@ -62,6 +62,18 @@ Signing in with GitHub during this step causes Azure to automatically:
 
    <img width="620" height="247" alt="Web-url" src="https://github.com/user-attachments/assets/0addbe51-0367-4cc0-add0-fca38592c302" />
 
+### Step 4 — Make an Update and Confirm Auto-Deploy
+
+1. Edit `index.html` in GitHub (directly, or via a pull request).
+2. Commit the change to `main` (or merge the pull request into `main`).
+3. In the Actions tab, confirm a new workflow run starts automatically.
+4. Once the run finishes successfully, refresh the live Azure URL and
+   confirm the update appears — with no manual deployment step required.
+
+   <img width="1406" height="287" alt="github-action" src="https://github.com/user-attachments/assets/0f2dc393-27cd-492b-a347-fc617246a80a" />
+
+   <img width="582" height="250" alt="After-update-web-url" src="https://github.com/user-attachments/assets/cd1a14b9-1561-4db3-9409-66793d7e9467" />
+
 
 
 
