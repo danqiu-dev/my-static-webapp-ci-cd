@@ -1,6 +1,6 @@
 # Static Web App CI/CD Project/Lab/Practice
 
-## Background
+## Background (condensed and does not mirror the actual environment)
 
 At work, a client's dashboard was hosted on Azure Static Web Apps, with its
 source code stored in a GitHub repository. When an update was merged into
